@@ -1,59 +1,57 @@
-import sys, getopt, argparse
+import sys, argparse
+
+from requests.api import options
 from src.auto_register import AutoRegister
 
-def main(argv):
-   inputfile = ''
-   outputfile = ''
-
-   try:
-      # optional arguments
-      parser = argparse.ArgumentParser()
-      parser.add_argument('--skip', help='skips if the member number set')
-
-      # command line options
-      opts, args = getopt.getopt(argv, "hsi:o:", [
-         "ifile",
-         "ofile", 
-         "skip"
-      ])
-
-   except getopt.GetoptError:
-      print('%(prog) [-s] -i <inputfile> -o <outputfile>')
-      sys.exit(2)
-
-   for opt, arg in opts:
-      if opt == '-h':
-         # help
-         print('%(prog) [-s] -i <inputfile> -o <outputfile>')
-         sys.exit()
-
-      elif opt in ("-i", "--ifile"):
-         # input file
-         inputfile = arg
-
-      elif opt in ("-o", "--ofile"):
-         # output file
-         outputfile = arg
-
-      elif opt in ("-s", "--skip"):
-         # output file
-         outputfile = arg
+def main():
    
+   # command line arguments parser
+   parser = argparse.ArgumentParser(prog='UDA Auto Registry')
+   parser.add_argument('-s', '--skip', action='store_true', help='skips if the member number set')
+   parser.add_argument('-r', '--random', type=int, help='generate random records')
+   parser.add_argument('-if', '--ifile', required=True, help='the input csv file')
+   parser.add_argument('-of', '--ofile', help='the output csv file')
+   
+   
+   optv= parser.parse_args()
+   auto_register = AutoRegister(
+      input_file = optv.ifile, 
+      output_file = optv.ofile, 
+      skip = optv.skip,
+      random_values = optv.random,
+   )
+   
+   auto_register.run()
+      
+      
 
-   # # run the program
-   # auto_register = AutoRegister(inputfile, outputfile)
-   # auto_register.run()
+   # try:
+   #    # get optional arguments
+   #    optv= parser.parse_args()
 
-   # finish
-   print('finished')
+   #    # run the program
+   #    auto_register = AutoRegister(
+   #       input_file = optv.ifile, 
+   #       output_file = optv.ofile, 
+   #       skip = optv.skip,
+   #       random_values = optv.random,
+   #    )
+      
+   #    auto_register.run()
+   #    print('finished')
 
+   # # catch exception
+   # except Exception as e:
+   #    parser.print_help()
+      
+   #    # print exception
+   #    print()
+   #    print('Error: ', e)
+
+   #    # exit program
+   #    sys.exit(2)
+
+
+# program start
 if __name__ == "__main__":
-   # main(sys.argv[1:])
-
-   # run the program
-   # auto_register = AutoRegister()
-   # auto_register.run_random()
-   
-   
-   # auto_register = AutoRegister(inputfile, outputfile)
-   # auto_register.run()
+   main()

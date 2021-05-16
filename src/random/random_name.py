@@ -12,7 +12,7 @@ class RandomName:
 
         # loop through details
         for details in self.input_data:
-            column_data = generated.append(details['name'])
+            generated.append(details['name'])
 
         # return generated details
         return generated
