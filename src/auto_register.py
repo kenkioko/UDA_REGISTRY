@@ -9,7 +9,7 @@ class AutoRegister:
     random_values = None
     skip = False
     input_file = None
-    output_file = 'output_files\South C Members ' + str(time.time_ns()) + '.csv'
+    output_file = 'output_files/South C Members ' + str(time.time_ns()) + '.csv'
 
     def __init__(self, **kwargs):
         # set input file
@@ -29,7 +29,7 @@ class AutoRegister:
             self.random_values = kwargs['random_values']
 
 
-    def register_members(self, members, wait = None):
+    def register_members(self, members, wait = 0):
         registered_members = []
 
         # send register url

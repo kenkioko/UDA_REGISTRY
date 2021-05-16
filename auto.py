@@ -12,44 +12,31 @@ def main():
    parser.add_argument('-if', '--ifile', required=True, help='the input csv file')
    parser.add_argument('-of', '--ofile', help='the output csv file')
    
-   
-   optv= parser.parse_args()
-   auto_register = AutoRegister(
-      input_file = optv.ifile, 
-      output_file = optv.ofile, 
-      skip = optv.skip,
-      random_values = optv.random,
-   )
-   
-   auto_register.run()
-      
-      
+   try:
+      # get optional arguments
+      optv= parser.parse_args()
 
-   # try:
-   #    # get optional arguments
-   #    optv= parser.parse_args()
-
-   #    # run the program
-   #    auto_register = AutoRegister(
-   #       input_file = optv.ifile, 
-   #       output_file = optv.ofile, 
-   #       skip = optv.skip,
-   #       random_values = optv.random,
-   #    )
+      # run the program
+      auto_register = AutoRegister(
+         input_file = optv.ifile, 
+         output_file = optv.ofile, 
+         skip = optv.skip,
+         random_values = optv.random,
+      )
       
-   #    auto_register.run()
-   #    print('finished')
+      auto_register.run()
+      print('finished')
 
-   # # catch exception
-   # except Exception as e:
-   #    parser.print_help()
+   # catch exception
+   except Exception as e:
+      parser.print_help()
       
-   #    # print exception
-   #    print()
-   #    print('Error: ', e)
+      # print exception
+      print()
+      print('Error: ', e)
 
-   #    # exit program
-   #    sys.exit(2)
+      # exit program
+      sys.exit(2)
 
 
 # program start
