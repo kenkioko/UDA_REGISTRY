@@ -51,5 +51,9 @@ if __name__ == "__main__":
    # main(sys.argv[1:])
 
    # run the program
-   auto_register = AutoRegister()
-   auto_register.run_random()
+   # auto_register = AutoRegister()
+   # auto_register.run_random()
+   
+   
+   # auto_register = AutoRegister(inputfile, outputfile)
+   # auto_register.run()
